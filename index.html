@@ -22,28 +22,33 @@
                                     <th align="center">Food</th>
                                 </tr>
                                 <tr>
-                                    <td width="78" align="center" id="pw3" onClick="powerSelected(3);">Omlet</td>
+                                    <td align="center">bourgr</td>
                                 </tr>
-								
                                 <tr>
-                                    <td align="center" id="pw2" onClick="powerSelected(2);">soucec</td>
-                                </tr> 
-                                <tr>
-                                    <td align="center" id="pw1" onClick="powerSelected(1);">spaghette</td>
+                                    <td width="78" align="center">Omlet</td>
                                 </tr>
 								 <tr>
-                                    <td width="78" align="center" id="pw6" onClick="powerSelected(6);">meat</td>
-                                </tr>
-								
-                                <tr>
-                                    <td align="center" id="pw5" onClick="powerSelected(5);">soup</td>
+                                    <td width="78" align="center">meat</td>
                                 </tr>
                                 <tr>
-                                    <td align="center" id="pw4" onClick="powerSelected(4);">bourgr</td>
+                                    <td align="center">sandwich</td>
                                 </tr>
+                                <tr>
+                                    <td align="center" >creep</td>
+                                </tr>
+                                <tr>
+                                    <td align="center">soup</td>
+                                </tr>
+                                <tr>
+                                    <td align="center">soucec</td>
+                                </tr>
+                                <tr>
+                                    <td align="center">spaghette</td>
+                                </tr>
+
                             </table>
                             <br />
-                            <img id="spin_button" src="images/spin_off.png" alt="Spin" onClick="startSpin();" />
+                            <img id="spin_button" src="images/spin_on.png" alt="Spin" onClick="startSpin();" class='clickable' />
                             <br /><br />
                             &nbsp;&nbsp;<a href="#" onClick="resetWheel(); return false;">
 							RESET</a><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -57,105 +62,6 @@
                 </tr>
             </table>
         </div>
-        <script>
-            let theWheel = new Winwheel({
-                'numSegments'       : 8,                               
-                'drawText'          : true,             
-                'textFontSize'      : 16,
-                'textOrientation'   : 'curved',
-                'textAlignment'     : 'inner',
-                'textMargin'        : 90,
-                'textFontFamily'    : 'monospace',
-                'textStrokeStyle'   : 'black',
-                'textLineWidth'     : 3,
-                'textFillStyle'     : 'white',
-                'drawMode'          : 'segmentImage',   
-                'segments'          :                    
-                [
-                   {'image' : 'images/spaghette.png'},
-                   {'image' : 'images/soucess.png'},
-                   {'image' : 'images/soup.png'},
-                   {'image' : 'images/creep.png'},
-                   {'image' : 'images/sandwich.png'},
-                   {'image' : 'images/meat.png'},
-                   {'image' : 'images/Omlet.png'},
-                   {'image' : 'images/burgur.png'}
-                ],
-                'animation' :           // Specify the animation to use.
-                {
-                    'type'     : 'spinToStop',
-                    'callbackFinished' : alertPrize
-                }
-            });
-            let wheelPower    = 0;
-            let wheelSpinning = false;
-            function powerSelected(powerLevel)
-            {
-                if (wheelSpinning == false) {
-                    document.getElementById('pw1').className = "";
-                    document.getElementById('pw2').className = "";
-                    document.getElementById('pw3').className = "";
-					 document.getElementById('pw4').className = "";
-                    document.getElementById('pw5').className = "";
-                    document.getElementById('pw6').className = "";
-                    if (powerLevel >= 1) {
-                        document.getElementById('pw1').className = "pw1";
-                    }
-
-                    if (powerLevel >= 2) {
-                        document.getElementById('pw2').className = "pw2";
-                    }
-
-                    if (powerLevel >= 3) {
-                        document.getElementById('pw3').className = "pw3";
-                    }
-
-                    wheelPower = powerLevel;
-                    document.getElementById('spin_button').src = "images/spin_on.png";
-                    document.getElementById('spin_button').className = "clickable";
-                }
-            }
-            function startSpin()
-            {
-
-                if (wheelSpinning == false) {
-                    if (wheelPower == 1) {
-                theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
-                theWheel.rotationAngle = 45;     // Re-set the wheel angle to 0 degrees.
-                theWheel.draw(); 
-                        
-                    } else if (wheelPower == 2) {
-               theWheel.rotationAngle = 0; 
-                       
-                    } else if (wheelPower == 3) {
-                theWheel.rotationAngle = 0;
-				 
-                       
-                    }
-                    document.getElementById('spin_button').src       = "images/spin_off.png";
-                    document.getElementById('spin_button').className = "";
-                    theWheel.startAnimation();
-                    wheelSpinning = true;
-                }
-            }
-
-            function resetWheel()
-            {
-                theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
-                theWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
-                theWheel.draw();                
-
-                document.getElementById('pw1').className = "";  
-                document.getElementById('pw2').className = "";
-                document.getElementById('pw3').className = "";
-
-                wheelSpinning = false;          
-            }
-
-            function alertPrize(indicatedSegment)
-            {
-                alert(indicatedSegment.image + ' ready to eat ');
-            }
-        </script>
+        <script src="js/script.js"></script>
     </body>
 </html>
